@@ -1,6 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
-import {addCashAction, getCashAction} from "./store/index/cashReducer";
-import {addCustomerAction, removeCustomerAction} from "./store/index/customersReducer";
+import {addCashAction, getCashAction} from "./store/cashReducer";
+import {addCustomerAction, addManyCustomerAction, removeCustomerAction} from "./store/customersReducer";
+import {fetchCustomers} from "./asyncAction/customers";
 
 function App() {
     const dispatch = useDispatch()
@@ -44,6 +45,11 @@ function App() {
                 style={{padding: 15, margin: 15, fontSize: '2em'}}
                 onClick={() => addCustomer((prompt()))}>
                 Добавить пользователя
+            </button>
+            <button
+                style={{padding: 15, margin: 15, fontSize: '2em'}}
+                onClick={() => dispatch(fetchCustomers())}>
+                Добавить пользователей из базы
             </button>
             <div>
                 {customers.length === 0 ?
